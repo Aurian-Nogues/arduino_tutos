@@ -1,18 +1,21 @@
 
-
+//speaker
 const int speakerPin = 9;
 const int frequency = 500;
 const int duration = 50;
+//tempo control
 const int potPin = 0;
-const int buttonPin = 2;
-int last_state = 0;
 int potValue;
+//on-off button
+const int buttonPin = 2;
 boolean metronomeOn = false;
 
+//tempo calculations
 unsigned int ms_per_beat = 0;
 unsigned int bpm = 60;
 unsigned int ms_per_minute = 1000 * 60;
 
+//Interrupt Service Routine
 void buttonPress() {
     metronomeOn = !metronomeOn;
     Serial.println("Pressed the button");
@@ -20,7 +23,6 @@ void buttonPress() {
 
 void setup() {
     //calculate the amount of delay: ms per minute / bpm
-
     ms_per_beat =  ms_per_minute /  bpm;
     Serial.begin(9600);
 
@@ -45,9 +47,15 @@ void loop() {
 
 
       
-    Serial.println(bpm);
+
     if (metronomeOn == true){
       tone(speakerPin, frequency, duration);
-      delay(ms_per_beat);
+      Serial.print(bpm);
+      Serial.println(" bpm");
+      
+      } else {
+        Serial.println("Metronome is off, press button to turn on");
       }
+
+      delay(ms_per_beat);
     }

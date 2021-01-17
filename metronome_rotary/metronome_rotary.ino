@@ -40,6 +40,7 @@ void loop() {
 
       //check if bpm was changed by encoder
       int result = read_encoder();
+    
       if (result != 0){
           bpm += result;
           ms_per_beat = ms_per_minute / bpm;

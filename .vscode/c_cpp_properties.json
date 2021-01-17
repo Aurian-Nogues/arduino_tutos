@@ -4,21 +4,23 @@
             "name": "Win32",
             "includePath": [
                 "C:\\Program Files (x86)\\Arduino\\tools\\**",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\**",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
                 "C:\\Users\\auria\\Documents\\Arduino\\libraries\\**",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\**",
-                "C:\\Users\\auria\\AppData\\Local\\Arduino15\\packages\\emoro\\hardware\\avr\\3.2.2\\**"
-            ],
-            "forcedInclude": [
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
+                "${workspaceFolder}/**"
             ],
             "defines": [
-                "USBCON"
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
             ],
-            "intelliSenseMode": "msvc-x64",
             "cStandard": "c17",
-            "cppStandard": "c++17"
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64",
+            "forcedInclude": [
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+            ]
         }
     ],
     "version": 4

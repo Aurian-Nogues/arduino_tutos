@@ -20,8 +20,6 @@ void setup()
     //Initialize the encoder with pin numbers and a debounce 
     //time. Starting position = 50, range 1-100
     encoder.init(pinA, pinB, debounceTime, 50, 1, 100); 
-    
-    Serial.begin(9600);
 }
 
 void loop()
@@ -32,7 +30,6 @@ void loop()
     //Print the position if it has changed
     if(pos != lastShaftPosition)
     {
-         //Serial.println(pos);
          lastShaftPosition = pos; 
     }
 }

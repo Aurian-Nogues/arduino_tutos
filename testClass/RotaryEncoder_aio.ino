@@ -1,6 +1,18 @@
-#include "RotaryEncoder.h"
 
-      RotaryEncoder::RotaryEncoder(int pin_a, int pin_b, int pin_press = false, int debounce_ms = 50){
+
+class RotaryEncoder {
+    private:
+        int pin_a;
+        int pin_b;
+        int pin_press = false;
+
+        int previous_pin_a_value = 1;
+
+        unsigned long previous_event = 0;
+        int debounce_ms;
+        int position = 50;
+    public:
+        RotaryEncoder(int pin_a, int pin_b, int pin_press = false, int debounce_ms = 50){
             this->pin_a = pin_a;
             this->pin_b = pin_b;
             if (pin_press != false) {
@@ -8,17 +20,17 @@
             }
             this-> debounce_ms = debounce_ms;
             init();
-      }
+        }
 
-      void RotaryEncoder::init(){
+        void init() {
             pinMode(pin_a, INPUT_PULLUP);
             pinMode(pin_b, INPUT_PULLUP);
             if (pin_press != false){
-            pinMode(pin_press, INPUT_PULLUP);
+                pinMode(pin_press, INPUT_PULLUP);
             }
-      }
+        }
 
-      int RotaryEncoder::currentOffset(){
+        int currentOffset(){
             int pin_a_value = digitalRead(pin_a);
             int pin_b_value = digitalRead(pin_b);
                 //Serial.print("A: ");
@@ -42,9 +54,30 @@
             previous_pin_a_value = pin_a_value;
             position = position + offset;
             return(offset);
-      }
+        }
 
-      int RotaryEncoder::returnPosition(){
+        int returnPosition(){
             return position;
-      }
+        }
+};
 
+#define ENCODER_PIN_A 3
+#define ENCODER_PIN_B 4
+
+RotaryEncoder encoder_1(ENCODER_PIN_A, ENCODER_PIN_B);
+
+void setup() {
+      Serial.begin(9600);
+      
+}
+
+void loop() {
+
+    int previous_position = encoder_1.returnPosition();
+    encoder_1.currentOffset();
+    int current_position = encoder_1.returnPosition();
+    if (current_position != previous_position){
+        Serial.println(current_position);
+    }
+    
+}
